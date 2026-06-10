@@ -1,26 +1,131 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* 1. STORE ALL YOUR RAW HEX CODES HERE */
+  /* Primary System */
+  --raw-primary: #5f5e5a;
+  --raw-on-primary: #ffffff;
+  --raw-primary-container: #f9f6f0;
+  --raw-on-primary-container: #72706c;
+  --raw-primary-fixed: #e5e2dc;
+  --raw-primary-fixed-dim: #c9c6c1;
+  --raw-on-primary-fixed: #1c1c18;
+  --raw-on-primary-fixed-variant: #474743;
+
+  /* Secondary System (Your core brand browns) */
+  --raw-secondary: #8b4f34;
+  --raw-on-secondary: #ffffff;
+  --raw-secondary-container: #fdae8d;
+  --raw-on-secondary-container: #783f26;
+  --raw-secondary-fixed: #ffdbcd;
+  --raw-secondary-fixed-dim: #ffb597;
+  --raw-on-secondary-fixed: #360f00;
+  --raw-on-secondary-fixed-variant: #6e381f;
+
+  /* Tertiary System (Your accent warm tones) */
+  --raw-tertiary: #8e4e27;
+  --raw-on-tertiary: #ffffff;
+  --raw-tertiary-container: #fff4f0;
+  --raw-on-tertiary-container: #a35f37;
+  --raw-tertiary-fixed: #ffdbca;
+  --raw-tertiary-fixed-dim: #ffb68f;
+  --raw-on-tertiary-fixed: #331200;
+  --raw-on-tertiary-fixed-variant: #703712;
+
+  /* Surface & Canvas System */
+  --raw-background: #fcf9f8;
+  --raw-on-background: #1c1b1b;
+  --raw-surface: #fcf9f8;
+  --raw-on-surface: #1c1b1b;
+  --raw-surface-variant: #e5e2e1;
+  --raw-on-surface-variant: #474741;
+  --raw-surface-bright: #fcf9f8;
+  --raw-surface-dim: #dcd9d9;
+  --raw-surface-container-lowest: #ffffff;
+  --raw-surface-container-low: #f6f3f2;
+  --raw-surface-container: #f0eded;
+  --raw-surface-container-high: #eae7e7;
+  --raw-surface-container-highest: #e5e2e1;
+
+  /* Inverse Mapping */
+  --raw-inverse-surface: #313030;
+  --raw-inverse-on-surface: #f3f0ef;
+  --raw-inverse-primary: #c9c6c1;
+
+  /* Outlines & Borders */
+  --raw-outline: #787770;
+  --raw-outline-variant: #c8c7be;
+
+  /* System Errors */
+  --raw-error: #ba1a1a;
+  --raw-on-error: #ffffff;
+  --raw-error-container: #ffdad6;
+  --raw-on-error-container: #93000a;
+  --raw-surface-tint: #5f5e5a;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+@theme {
+  /* 2. MAP THE RAW VARIABLES TO TAILWIND UTILITIES */
+  /* (Completely removed the @media prefers-color-scheme dark block) */
+
+  --color-primary: var(--raw-primary);
+  --color-on-primary: var(--raw-on-primary);
+  --color-primary-container: var(--raw-primary-container);
+  --color-on-primary-container: var(--raw-on-primary-container);
+  --color-primary-fixed: var(--raw-primary-fixed);
+  --color-primary-fixed-dim: var(--raw-primary-fixed-dim);
+  --color-on-primary-fixed: var(--raw-on-primary-fixed);
+  --color-on-primary-fixed-variant: var(--raw-on-primary-fixed-variant);
+
+  --color-secondary: var(--raw-secondary);
+  --color-on-secondary: var(--raw-on-secondary);
+  --color-secondary-container: var(--raw-secondary-container);
+  --color-on-secondary-container: var(--raw-on-secondary-container);
+  --color-secondary-fixed: var(--raw-secondary-fixed);
+  --color-secondary-fixed-dim: var(--raw-secondary-fixed-dim);
+  --color-on-secondary-fixed: var(--raw-on-secondary-fixed);
+  --color-on-secondary-fixed-variant: var(--raw-on-secondary-fixed-variant);
+
+  --color-tertiary: var(--raw-tertiary);
+  --color-on-tertiary: var(--raw-on-tertiary);
+  --color-tertiary-container: var(--raw-tertiary-container);
+  --color-on-tertiary-container: var(--raw-on-tertiary-container);
+  --color-tertiary-fixed: var(--raw-tertiary-fixed);
+  --color-tertiary-fixed-dim: var(--raw-tertiary-fixed-dim);
+  --color-on-tertiary-fixed: var(--raw-on-tertiary-fixed);
+  --color-on-tertiary-fixed-variant: var(--raw-on-tertiary-fixed-variant);
+
+  --color-background: var(--raw-background);
+  --color-on-background: var(--raw-on-background);
+
+  --color-surface: var(--raw-surface);
+  --color-on-surface: var(--raw-on-surface);
+  --color-surface-variant: var(--raw-surface-variant);
+  --color-on-surface-variant: var(--raw-on-surface-variant);
+  --color-surface-bright: var(--raw-surface-bright);
+  --color-surface-dim: var(--raw-surface-dim);
+  --color-surface-container-lowest: var(--raw-surface-container-lowest);
+  --color-surface-container-low: var(--raw-surface-container-low);
+  --color-surface-container: var(--raw-surface-container);
+  --color-surface-container-high: var(--raw-surface-container-high);
+  --color-surface-container-highest: var(--raw-surface-container-highest);
+
+  --color-inverse-surface: var(--raw-inverse-surface);
+  --color-inverse-on-surface: var(--raw-inverse-on-surface);
+  --color-inverse-primary: var(--raw-inverse-primary);
+
+  --color-outline: var(--raw-outline);
+  --color-outline-variant: var(--raw-outline-variant);
+
+  --color-error: var(--raw-error);
+  --color-on-error: var(--raw-on-error);
+  --color-error-container: var(--raw-error-container);
+  --color-on-error-container: var(--raw-on-error-container);
+  --color-surface-tint: var(--raw-surface-tint);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
+/* 3. SET UP BASE BODY INSTRUCTIONS ALWAYS USING THE ROOT VARIABLES */
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--raw-background);
+  color: var(--raw-on-background);
 }
