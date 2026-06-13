@@ -62,7 +62,7 @@ export default function Footer() {
         Using mt-auto to naturally push it cleanly to the floor of the viewport space
       */}
       <div className=" w-full md:mx-auto my-auto px-4  md:md:pb-30 pointer-events-none mt-auto overflow-hidden">
-        <h1 className="hidden md:block md:text-[100px] xl:text-[170px] font-black tracking-wide text-center uppercase text-error-container font-serif">
+        <h1 className="hidden md:block md:text-[100px] xl:text-[170px] font-black tracking-wide text-center uppercase text-white/80 font-serif">
           STRIDESTYLE
         </h1>
       </div>

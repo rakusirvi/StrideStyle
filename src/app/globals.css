@@ -171,3 +171,7 @@ button {
 .animate-slide-in {
   animation: slideIn 0.4s cubic-bezier(0.2, 1, 0.3, 1) forwards;
 }
+
+html {
+  scrollbar-width: none;
+}
