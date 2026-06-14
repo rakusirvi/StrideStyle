@@ -37,11 +37,11 @@ const ProductCard = ({ product }: ProductType) => {
     <div className="group cursor-pointer relative">
       <div className="relative overflow-hidden bg-gray-100 aspect-3/4 rounded-md mb-3">
         <Image
-          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-102"
+          className="w-full h-full  object-cover transition-transform duration-500 group-hover:scale-102"
           src={product.img}
           alt={product.title}
           fill
-          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 20vw"
           priority={false}
         />
 
@@ -61,11 +61,11 @@ const ProductCard = ({ product }: ProductType) => {
         </button>
       </div>
 
-      <div className="flex justify-between items-start pt-1">
+      <div className="flex flex-col  items-start  ml-2">
         <h3 className="font-medium text-gray-900 text-sm group-hover:underline">
           {product.title}
         </h3>
-        <p className="font-semibold text-gray-900 text-sm">{product.price}</p>
+        <p className="font-semibold text-gray-900 text-s"> {product.price}</p>
       </div>
     </div>
   );

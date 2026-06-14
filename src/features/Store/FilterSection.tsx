@@ -85,7 +85,7 @@ const FilterSection = () => {
   };
 
   return (
-    <aside className="w-full md:w-74 md:border-r  md:border-gray-300 md:pr-5 shrink-0 space-y-10">
+    <aside className="w-full md:w-74   md:border-gray-300 md:pr-5 shrink-0 space-y-10">
       <div>
         <h4 className="font-medium text-gray-900 uppercase mb-4 tracking-widest text-sm">
           Price Range

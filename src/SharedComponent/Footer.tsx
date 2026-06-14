@@ -6,7 +6,6 @@ import { FooterCopyright } from "./footerComponent/FooterCopyRight";
 import { FooterLinkColumn } from "./footerComponent/FooterLinkColumn";
 import { FooterLogoColumn } from "./footerComponent/FooterLogoColumn";
 
-// 1. Memory Optimization: Lift static data outside the component to prevent re-renders
 const SHOP_LINKS = [
   { label: "Men's Collection", href: "#" },
   { label: "Women's Collection", href: "#" },
@@ -28,7 +27,6 @@ const JOURNAL_LINKS = [
 ];
 
 export default function Footer() {
-  // Memoized or stable callbacks for interactive actions
   const handleLinkClick = React.useCallback(
     (link: { label: string; href: string }) => {
       console.log(`User navigated to: ${link.label} (${link.href})`);
@@ -58,9 +56,6 @@ export default function Footer() {
         />
       </div>
 
-      {/* Middle Display Grid: Big Typography Section
-        Using mt-auto to naturally push it cleanly to the floor of the viewport space
-      */}
       <div className=" w-full md:mx-auto my-auto px-4  md:md:pb-30 pointer-events-none mt-auto overflow-hidden">
         <h1 className="hidden md:block md:text-[100px] xl:text-[170px] font-black tracking-wide text-center uppercase text-white/80 font-serif">
           STRIDESTYLE
