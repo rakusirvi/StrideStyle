@@ -1,147 +1,147 @@
 "use client";
-import React from "react";
+import React, { Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import MainProductCard from "@/SharedComponent/ProductCard/ProductCard";
 import FilterSection from "@/features/Store/FilterSection";
 
-const Page = () => {
-  const searchParams = useSearchParams();
+// Raw mock products dataset
+const products = [
+  {
+    id: "65c2a1b3e4b0f1a2c3d4e5f1",
+    title: "Marlow Tee",
+    price: 65.0,
+    img: "https://lh3.googleusercontent.com/aida-public/AB6AXuAgLUdTl9pmsHGcbAzfpMEaEYo2FDJreL1l6Gb_NeSwrFNpnqSilhGFk9tJLe5dhsYn3MF-14j6oGrtZI8P50b989nHNh8sxVDfMQ4j6IbF0lNyIn8gZ_qhpyNHTb56cJA7XmNkAXbGeHSGjEolbh6CnYcD2BV5sUix7R2xqxGokqbJvuviC8VyPnUd639nRXF8DvqyfTyP4ovL7LhnaId1JrjFCa_SG2RGHls0RBN0aajRFeoFG16yc1dy5yl_bu-D9gIwUjKBrkU",
+    category: "Men",
+    type: "T-shirts",
+    sizes: ["XS", "S", "M"],
+    collar: "ROUNDED",
+    sleeve: "half",
+  },
+  {
+    id: "65c2a1b3e4b0f1a2c3d4e5f2",
+    title: "Stride Joggers",
+    price: 110.0,
+    img: "https://lh3.googleusercontent.com/aida-public/AB6AXuAX4qteYyoiJJwLhMiB_mt6TbqrKtoCX_0IjqKlUJNnSW_c-y8WU108OG-V5zMgJ4ZORMFEQ8wwSR-9w4kcFUtzhUuX_gYeO0ztPmDeP1V0YGSl82-BBVLV5CZ7Y0RaVOidR19prPn2OD6NmZQ6aVBNeRViUivrrpSi95PX_q2w7T1d-La6afoJZY2n6kfdcBi5yus5arWXXDALi7ldkijocRnACyZNwH-XLvZy4lIx38eO0_spcy6V29WDUtfzz0-A9yai5BdjECc",
+    category: "Men",
+    type: "Track Pants",
+    sizes: ["M", "L", "XL", "XXL"],
+    collar: "Zip",
+    sleeve: "FULL",
+  },
+  {
+    id: "65c2a1b3e4b0f1a2c3d4e5f3",
+    title: "Icon Tee",
+    price: 60.0,
+    img: "https://lh3.googleusercontent.com/aida-public/AB6AXuDlMmN33xZ8bnVwAe1NVTpncgVAGYx5Yk2FHDKLrFA3llQj6XccAYlAzs9NDbCSvQNZa9D0CBdXQEcyrUanU1m8MFlq3EJbcr9ofDnt4Cf0T5OWS7D4vuTl_rIU0ITssoUB8hAnuyCJKLCq6WXxQvFiLjvR21Aal8CGlstE5yhe7LjYEnCd4w5yZjyS--gQJ6Tkta0LGlBPquj4DCTy05wY8uQhC03gyjf8XPOaWQo93gNg3EIOD4GFLSxi1xnmyVCKkQzI689uGAU",
+    category: "Women",
+    type: "T-shirts",
+    sizes: ["S", "M", "L"],
+    collar: "POLO",
+    sleeve: "half",
+  },
+  {
+    id: "65c2a1b3e4b0e5f4",
+    title: "Oversized Hoodie",
+    price: 145.0,
+    img: "https://lh3.googleusercontent.com/aida-public/AB6AXuCRrL-gCDOvhda5K1wSSPBZf45KCvChYHgjTj5dYorKstKcQeaMEO-qhY2K0Ifanl8B-x35-M1X76bqg1PYGXs3ZHRHG3SD7E1iPDk4tHFaupjES5Chqd8kaq3DhE5b0egFef74vOKEXrvloFjhidAWlm-YA2wma1XxGDOMieqV0uDhLvfXpnBizWR817yU2JbY1IMyiNeYvNohl5E8jvg1dumn326Zka0C5cJGbG-Agw_JmSLmVxfWXfstjy3HZJJ03JqpZQHFzQE",
+    category: "Kids",
+    type: "Outerwear",
+    sizes: ["S", "M"],
+    collar: "ROUNDED",
+    sleeve: "FULL",
+  },
+  {
+    id: "c2a1b3e4b0f1a2c3d4e5f1",
+    title: "Marlow Tee",
+    price: 65.0,
+    img: "https://lh3.googleusercontent.com/aida-public/AB6AXuAgLUdTl9pmsHGcbAzfpMEaEYo2FDJreL1l6Gb_NeSwrFNpnqSilhGFk9tJLe5dhsYn3MF-14j6oGrtZI8P50b989nHNh8sxVDfMQ4j6IbF0lNyIn8gZ_qhpyNHTb56cJA7XmNkAXbGeHSGjEolbh6CnYcD2BV5sUix7R2xqxGokqbJvuviC8VyPnUd639nRXF8DvqyfTyP4ovL7LhnaId1JrjFCa_SG2RGHls0RBN0aajRFeoFG16yc1dy5yl_bu-D9gIwUjKBrkU",
+    category: "Men",
+    type: "T-shirts",
+    sizes: ["XS", "S", "M"],
+    collar: "ROUNDED",
+    sleeve: "half",
+  },
+  {
+    id: "65c2a1b3e4d4e5f2",
+    title: "Stride Joggers",
+    price: 110.0,
+    img: "https://lh3.googleusercontent.com/aida-public/AB6AXuAX4qteYyoiJJwLhMiB_mt6TbqrKtoCX_0IjqKlUJNnSW_c-y8WU108OG-V5zMgJ4ZORMFEQ8wwSR-9w4kcFUtzhUuX_gYeO0ztPmDeP1V0YGSl82-BBVLV5CZ7Y0RaVOidR19prPn2OD6NmZQ6aVBNeRViUivrrpSi95PX_q2w7T1d-La6afoJZY2n6kfdcBi5yus5arWXXDALi7ldkijocRnACyZNwH-XLvZy4lIx38eO0_spcy6V29WDUtfzz0-A9yai5BdjECc",
+    category: "Men",
+    type: "Track Pants",
+    sizes: ["M", "L", "XL", "XXL"],
+    collar: "Zip",
+    sleeve: "FULL",
+  },
+  {
+    id: "65c2a1b3e4b0f1a2c3d4e3",
+    title: "Icon Tee",
+    price: 60.0,
+    img: "https://lh3.googleusercontent.com/aida-public/AB6AXuDlMmN33xZ8bnVwAe1NVTpncgVAGYx5Yk2FHDKLrFA3llQj6XccAYlAzs9NDbCSvQNZa9D0CBdXQEcyrUanU1m8MFlq3EJbcr9ofDnt4Cf0T5OWS7D4vuTl_rIU0ITssoUB8hAnuyCJKLCq6WXxQvFiLjvR21Aal8CGlstE5yhe7LjYEnCd4w5yZjyS--gQJ6Tkta0LGlBPquj4DCTy05wY8uQhC03gyjf8XPOaWQo93gNg3EIOD4GFLSxi1xnmyVCKkQzI689uGAU",
+    category: "Women",
+    type: "T-shirts",
+    sizes: ["S", "M", "L"],
+    collar: "POLO",
+    sleeve: "half",
+  },
+  {
+    id: "65c2a1b3e4b0f1ad4e5f4",
+    title: "Oversized Hoodie",
+    price: 145.0,
+    img: "https://lh3.googleusercontent.com/aida-public/AB6AXuCRrL-gCDOvhda5K1wSSPBZf45KCvChYHgjTj5dYorKstKcQeaMEO-qhY2K0Ifanl8B-x35-M1X76bqg1PYGXs3ZHRHG3SD7E1iPDk4tHFaupjES5Chqd8kaq3DhE5b0egFef74vOKEXrvloFjhidAWlm-YA2wma1XxGDOMieqV0uDhLvfXpnBizWR817yU2JbY1IMyiNeYvNohl5E8jvg1dumn326Zka0C5cJGbG-Agw_JmSLmVxfWXfstjy3HZJJ03JqpZQHFzQE",
+    category: "Kids",
+    type: "Outerwear",
+    sizes: ["S", "M"],
+    collar: "ROUNDED",
+    sleeve: "FULL",
+  },
+  {
+    id: "65cb3e4b0f1a2c3d4e5f1",
+    title: "Marlow Tee",
+    price: 65.0,
+    img: "https://lh3.googleusercontent.com/aida-public/AB6AXuAgLUdTl9pmsHGcbAzfpMEaEYo2FDJreL1l6Gb_NeSwrFNpnqSilhGFk9tJLe5dhsYn3MF-14j6oGrtZI8P50b989nHNh8sxVDfMQ4j6IbF0lNyIn8gZ_qhpyNHTb56cJA7XmNkAXbGeHSGjEolbh6CnYcD2BV5sUix7R2xqxGokqbJvuviC8VyPnUd639nRXF8DvqyfTyP4ovL7LhnaId1JrjFCa_SG2RGHls0RBN0aajRFeoFG16yc1dy5yl_bu-D9gIwUjKBrkU",
+    category: "Men",
+    type: "T-shirts",
+    sizes: ["XS", "S", "M"],
+    collar: "ROUNDED",
+    sleeve: "half",
+  },
+  {
+    id: "65c2a1b3e4b1a2c3d4e5f2",
+    title: "Stride Joggers",
+    price: 110.0,
+    img: "https://lh3.googleusercontent.com/aida-public/AB6AXuAX4qteYyoiJJwLhMiB_mt6TbqrKtoCX_0IjqKlUJNnSW_c-y8WU108OG-V5zMgJ4ZORMFEQ8wwSR-9w4kcFUtzhUuX_gYeO0ztPmDeP1V0YGSl82-BBVLV5CZ7Y0RaVOidR19prPn2OD6NmZQ6aVBNeRViUivrrpSi95PX_q2w7T1d-La6afoJZY2n6kfdcBi5yus5arWXXDALi7ldkijocRnACyZNwH-XLvZy4lIx38eO0_spcy6V29WDUtfzz0-A9yai5BdjECc",
+    category: "Men",
+    type: "Track Pants",
+    sizes: ["M", "L", "XL", "XXL"],
+    collar: "Zip",
+    sleeve: "FULL",
+  },
+  {
+    id: "65c2a1be4b0f1a2c3d4e5f3",
+    title: "Icon Tee",
+    price: 60.0,
+    img: "https://lh3.googleusercontent.com/aida-public/AB6AXuDlMmN33xZ8bnVwAe1NVTpncgVAGYx5Yk2FHDKLrFA3llQj6XccAYlAzs9NDbCSvQNZa9D0CBdXQEcyrUanU1m8MFlq3EJbcr9ofDnt4Cf0T5OWS7D4vuTl_rIU0ITssoUB8hAnuyCJKLCq6WXxQvFiLjvR21Aal8CGlstE5yhe7LjYEnCd4w5yZjyS--gQJ6Tkta0LGlBPquj4DCTy05wY8uQhC03gyjf8XPOaWQo93gNg3EIOD4GFLSxi1xnmyVCKkQzI689uGAU",
+    category: "Women",
+    type: "T-shirts",
+    sizes: ["S", "M", "L"],
+    collar: "POLO",
+    sleeve: "half",
+  },
+  {
+    id: "65c2a13e4b0f1a2c3d4e5f4",
+    title: "Oversized Hoodie",
+    price: 145.0,
+    img: "https://lh3.googleusercontent.com/aida-public/AB6AXuCRrL-gCDOvhda5K1wSSPBZf45KCvChYHgjTj5dYorKstKcQeaMEO-qhY2K0Ifanl8B-x35-M1X76bqg1PYGXs3ZHRHG3SD7E1iPDk4tHFaupjES5Chqd8kaq3DhE5b0egFef74vOKEXrvloFjhidAWlm-YA2wma1XxGDOMieqV0uDhLvfXpnBizWR817yU2JbY1IMyiNeYvNohl5E8jvg1dumn326Zka0C5cJGbG-Agw_JmSLmVxfWXfstjy3HZJJ03JqpZQHFzQE",
+    category: "Kids",
+    type: "Outerwear",
+    sizes: ["S", "M"],
+    collar: "ROUNDED",
+    sleeve: "FULL",
+  },
+];
 
-  // Raw mock products dataset
-  const products = [
-    {
-      id: "65c2a1b3e4b0f1a2c3d4e5f1",
-      title: "Marlow Tee",
-      price: 65.0,
-      img: "https://lh3.googleusercontent.com/aida-public/AB6AXuAgLUdTl9pmsHGcbAzfpMEaEYo2FDJreL1l6Gb_NeSwrFNpnqSilhGFk9tJLe5dhsYn3MF-14j6oGrtZI8P50b989nHNh8sxVDfMQ4j6IbF0lNyIn8gZ_qhpyNHTb56cJA7XmNkAXbGeHSGjEolbh6CnYcD2BV5sUix7R2xqxGokqbJvuviC8VyPnUd639nRXF8DvqyfTyP4ovL7LhnaId1JrjFCa_SG2RGHls0RBN0aajRFeoFG16yc1dy5yl_bu-D9gIwUjKBrkU",
-      category: "Men",
-      type: "T-shirts",
-      sizes: ["XS", "S", "M"],
-      collar: "ROUNDED",
-      sleeve: "half",
-    },
-    {
-      id: "65c2a1b3e4b0f1a2c3d4e5f2",
-      title: "Stride Joggers",
-      price: 110.0,
-      img: "https://lh3.googleusercontent.com/aida-public/AB6AXuAX4qteYyoiJJwLhMiB_mt6TbqrKtoCX_0IjqKlUJNnSW_c-y8WU108OG-V5zMgJ4ZORMFEQ8wwSR-9w4kcFUtzhUuX_gYeO0ztPmDeP1V0YGSl82-BBVLV5CZ7Y0RaVOidR19prPn2OD6NmZQ6aVBNeRViUivrrpSi95PX_q2w7T1d-La6afoJZY2n6kfdcBi5yus5arWXXDALi7ldkijocRnACyZNwH-XLvZy4lIx38eO0_spcy6V29WDUtfzz0-A9yai5BdjECc",
-      category: "Men",
-      type: "Track Pants",
-      sizes: ["M", "L", "XL", "XXL"],
-      collar: "Zip",
-      sleeve: "FULL",
-    },
-    {
-      id: "65c2a1b3e4b0f1a2c3d4e5f3",
-      title: "Icon Tee",
-      price: 60.0,
-      img: "https://lh3.googleusercontent.com/aida-public/AB6AXuDlMmN33xZ8bnVwAe1NVTpncgVAGYx5Yk2FHDKLrFA3llQj6XccAYlAzs9NDbCSvQNZa9D0CBdXQEcyrUanU1m8MFlq3EJbcr9ofDnt4Cf0T5OWS7D4vuTl_rIU0ITssoUB8hAnuyCJKLCq6WXxQvFiLjvR21Aal8CGlstE5yhe7LjYEnCd4w5yZjyS--gQJ6Tkta0LGlBPquj4DCTy05wY8uQhC03gyjf8XPOaWQo93gNg3EIOD4GFLSxi1xnmyVCKkQzI689uGAU",
-      category: "Women",
-      type: "T-shirts",
-      sizes: ["S", "M", "L"],
-      collar: "POLO",
-      sleeve: "half",
-    },
-    {
-      id: "65c2a1b3e4b0e5f4",
-      title: "Oversized Hoodie",
-      price: 145.0,
-      img: "https://lh3.googleusercontent.com/aida-public/AB6AXuCRrL-gCDOvhda5K1wSSPBZf45KCvChYHgjTj5dYorKstKcQeaMEO-qhY2K0Ifanl8B-x35-M1X76bqg1PYGXs3ZHRHG3SD7E1iPDk4tHFaupjES5Chqd8kaq3DhE5b0egFef74vOKEXrvloFjhidAWlm-YA2wma1XxGDOMieqV0uDhLvfXpnBizWR817yU2JbY1IMyiNeYvNohl5E8jvg1dumn326Zka0C5cJGbG-Agw_JmSLmVxfWXfstjy3HZJJ03JqpZQHFzQE",
-      category: "Kids",
-      type: "Outerwear",
-      sizes: ["S", "M"],
-      collar: "ROUNDED",
-      sleeve: "FULL",
-    },
-    {
-      id: "c2a1b3e4b0f1a2c3d4e5f1",
-      title: "Marlow Tee",
-      price: 65.0,
-      img: "https://lh3.googleusercontent.com/aida-public/AB6AXuAgLUdTl9pmsHGcbAzfpMEaEYo2FDJreL1l6Gb_NeSwrFNpnqSilhGFk9tJLe5dhsYn3MF-14j6oGrtZI8P50b989nHNh8sxVDfMQ4j6IbF0lNyIn8gZ_qhpyNHTb56cJA7XmNkAXbGeHSGjEolbh6CnYcD2BV5sUix7R2xqxGokqbJvuviC8VyPnUd639nRXF8DvqyfTyP4ovL7LhnaId1JrjFCa_SG2RGHls0RBN0aajRFeoFG16yc1dy5yl_bu-D9gIwUjKBrkU",
-      category: "Men",
-      type: "T-shirts",
-      sizes: ["XS", "S", "M"],
-      collar: "ROUNDED",
-      sleeve: "half",
-    },
-    {
-      id: "65c2a1b3e4d4e5f2",
-      title: "Stride Joggers",
-      price: 110.0,
-      img: "https://lh3.googleusercontent.com/aida-public/AB6AXuAX4qteYyoiJJwLhMiB_mt6TbqrKtoCX_0IjqKlUJNnSW_c-y8WU108OG-V5zMgJ4ZORMFEQ8wwSR-9w4kcFUtzhUuX_gYeO0ztPmDeP1V0YGSl82-BBVLV5CZ7Y0RaVOidR19prPn2OD6NmZQ6aVBNeRViUivrrpSi95PX_q2w7T1d-La6afoJZY2n6kfdcBi5yus5arWXXDALi7ldkijocRnACyZNwH-XLvZy4lIx38eO0_spcy6V29WDUtfzz0-A9yai5BdjECc",
-      category: "Men",
-      type: "Track Pants",
-      sizes: ["M", "L", "XL", "XXL"],
-      collar: "Zip",
-      sleeve: "FULL",
-    },
-    {
-      id: "65c2a1b3e4b0f1a2c3d4e3",
-      title: "Icon Tee",
-      price: 60.0,
-      img: "https://lh3.googleusercontent.com/aida-public/AB6AXuDlMmN33xZ8bnVwAe1NVTpncgVAGYx5Yk2FHDKLrFA3llQj6XccAYlAzs9NDbCSvQNZa9D0CBdXQEcyrUanU1m8MFlq3EJbcr9ofDnt4Cf0T5OWS7D4vuTl_rIU0ITssoUB8hAnuyCJKLCq6WXxQvFiLjvR21Aal8CGlstE5yhe7LjYEnCd4w5yZjyS--gQJ6Tkta0LGlBPquj4DCTy05wY8uQhC03gyjf8XPOaWQo93gNg3EIOD4GFLSxi1xnmyVCKkQzI689uGAU",
-      category: "Women",
-      type: "T-shirts",
-      sizes: ["S", "M", "L"],
-      collar: "POLO",
-      sleeve: "half",
-    },
-    {
-      id: "65c2a1b3e4b0f1ad4e5f4",
-      title: "Oversized Hoodie",
-      price: 145.0,
-      img: "https://lh3.googleusercontent.com/aida-public/AB6AXuCRrL-gCDOvhda5K1wSSPBZf45KCvChYHgjTj5dYorKstKcQeaMEO-qhY2K0Ifanl8B-x35-M1X76bqg1PYGXs3ZHRHG3SD7E1iPDk4tHFaupjES5Chqd8kaq3DhE5b0egFef74vOKEXrvloFjhidAWlm-YA2wma1XxGDOMieqV0uDhLvfXpnBizWR817yU2JbY1IMyiNeYvNohl5E8jvg1dumn326Zka0C5cJGbG-Agw_JmSLmVxfWXfstjy3HZJJ03JqpZQHFzQE",
-      category: "Kids",
-      type: "Outerwear",
-      sizes: ["S", "M"],
-      collar: "ROUNDED",
-      sleeve: "FULL",
-    },
-    {
-      id: "65cb3e4b0f1a2c3d4e5f1",
-      title: "Marlow Tee",
-      price: 65.0,
-      img: "https://lh3.googleusercontent.com/aida-public/AB6AXuAgLUdTl9pmsHGcbAzfpMEaEYo2FDJreL1l6Gb_NeSwrFNpnqSilhGFk9tJLe5dhsYn3MF-14j6oGrtZI8P50b989nHNh8sxVDfMQ4j6IbF0lNyIn8gZ_qhpyNHTb56cJA7XmNkAXbGeHSGjEolbh6CnYcD2BV5sUix7R2xqxGokqbJvuviC8VyPnUd639nRXF8DvqyfTyP4ovL7LhnaId1JrjFCa_SG2RGHls0RBN0aajRFeoFG16yc1dy5yl_bu-D9gIwUjKBrkU",
-      category: "Men",
-      type: "T-shirts",
-      sizes: ["XS", "S", "M"],
-      collar: "ROUNDED",
-      sleeve: "half",
-    },
-    {
-      id: "65c2a1b3e4b1a2c3d4e5f2",
-      title: "Stride Joggers",
-      price: 110.0,
-      img: "https://lh3.googleusercontent.com/aida-public/AB6AXuAX4qteYyoiJJwLhMiB_mt6TbqrKtoCX_0IjqKlUJNnSW_c-y8WU108OG-V5zMgJ4ZORMFEQ8wwSR-9w4kcFUtzhUuX_gYeO0ztPmDeP1V0YGSl82-BBVLV5CZ7Y0RaVOidR19prPn2OD6NmZQ6aVBNeRViUivrrpSi95PX_q2w7T1d-La6afoJZY2n6kfdcBi5yus5arWXXDALi7ldkijocRnACyZNwH-XLvZy4lIx38eO0_spcy6V29WDUtfzz0-A9yai5BdjECc",
-      category: "Men",
-      type: "Track Pants",
-      sizes: ["M", "L", "XL", "XXL"],
-      collar: "Zip",
-      sleeve: "FULL",
-    },
-    {
-      id: "65c2a1be4b0f1a2c3d4e5f3",
-      title: "Icon Tee",
-      price: 60.0,
-      img: "https://lh3.googleusercontent.com/aida-public/AB6AXuDlMmN33xZ8bnVwAe1NVTpncgVAGYx5Yk2FHDKLrFA3llQj6XccAYlAzs9NDbCSvQNZa9D0CBdXQEcyrUanU1m8MFlq3EJbcr9ofDnt4Cf0T5OWS7D4vuTl_rIU0ITssoUB8hAnuyCJKLCq6WXxQvFiLjvR21Aal8CGlstE5yhe7LjYEnCd4w5yZjyS--gQJ6Tkta0LGlBPquj4DCTy05wY8uQhC03gyjf8XPOaWQo93gNg3EIOD4GFLSxi1xnmyVCKkQzI689uGAU",
-      category: "Women",
-      type: "T-shirts",
-      sizes: ["S", "M", "L"],
-      collar: "POLO",
-      sleeve: "half",
-    },
-    {
-      id: "65c2a13e4b0f1a2c3d4e5f4",
-      title: "Oversized Hoodie",
-      price: 145.0,
-      img: "https://lh3.googleusercontent.com/aida-public/AB6AXuCRrL-gCDOvhda5K1wSSPBZf45KCvChYHgjTj5dYorKstKcQeaMEO-qhY2K0Ifanl8B-x35-M1X76bqg1PYGXs3ZHRHG3SD7E1iPDk4tHFaupjES5Chqd8kaq3DhE5b0egFef74vOKEXrvloFjhidAWlm-YA2wma1XxGDOMieqV0uDhLvfXpnBizWR817yU2JbY1IMyiNeYvNohl5E8jvg1dumn326Zka0C5cJGbG-Agw_JmSLmVxfWXfstjy3HZJJ03JqpZQHFzQE",
-      category: "Kids",
-      type: "Outerwear",
-      sizes: ["S", "M"],
-      collar: "ROUNDED",
-      sleeve: "FULL",
-    },
-  ];
+function StoreContent() {
+  const searchParams = useSearchParams();
 
   const activeCategories = searchParams.getAll("category");
   const activeTypes = searchParams.getAll("type");
@@ -150,7 +150,6 @@ const Page = () => {
   const activeSleeves = searchParams.getAll("sleeve");
   const activeMaxPrice = searchParams.get("price") || "200";
 
-  // Filter evaluation remains purely server/URL-driven
   const filteredProducts = products.filter((product) => {
     if (
       activeCategories.length > 0 &&
@@ -187,13 +186,11 @@ const Page = () => {
               </p>
             </div>
 
-            {/* Context indicator showing counter for your filtered items */}
             <div className="text-xs md:text-sm text-gray-400 font-medium whitespace-nowrap">
               Showing {filteredProducts.length} items
             </div>
           </div>
 
-          {/* Grid Layout (Restored 2 columns for crisp mobile layout) */}
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 gap-x-4 gap-y-10 pb-16">
             {filteredProducts.map((product) => (
               <MainProductCard
@@ -209,6 +206,18 @@ const Page = () => {
       </div>
     </div>
   );
-};
+}
 
-export default Page;
+export default function Page() {
+  return (
+    <Suspense
+      fallback={
+        <div className="flex items-center justify-center min-h-screen">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-black" />
+        </div>
+      }
+    >
+      <StoreContent />
+    </Suspense>
+  );
+}
