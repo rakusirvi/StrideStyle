@@ -143,7 +143,6 @@ const Page = () => {
     },
   ];
 
-  // Active filter checks matching actual URL parameters
   const activeCategories = searchParams.getAll("category");
   const activeTypes = searchParams.getAll("type");
   const activeSize = searchParams.get("size") || "";
@@ -170,7 +169,7 @@ const Page = () => {
   });
 
   return (
-    <div className="max-w-[1600px] min-h-screen md:h-[calc(100vh-56px)] mx-auto p-6 overflow-hidden">
+    <div className="max-w-[1600px] min-h-screen md:h-[calc(100vh-56px)] mx-auto p-2 overflow-hidden">
       <div className="flex flex-col md:flex-row gap-8 h-full pb-6">
         <div className="w-full md:w-82 shrink-0 md:h-full md:overflow-y-auto ">
           <FilterSection />
@@ -179,7 +178,7 @@ const Page = () => {
         <div className="grow md:h-full overflow-y-auto pr-2 scrollbar-none">
           <div className="flex flex-col md:flex-row md:items-end justify-between pt-4 pb-8 gap-4">
             <div>
-              <h2 className="text-3xl font-bold tracking-tight text-gray-900 mb-2">
+              <h2 className="md:text-3xl text-2xl font-bold tracking-tight text-gray-900 mb-2">
                 New Essentials
               </h2>
               <p className="text-sm text-gray-500 max-w-xl leading-relaxed">
@@ -189,7 +188,7 @@ const Page = () => {
             </div>
 
             {/* Context indicator showing counter for your filtered items */}
-            <div className="text-xs text-gray-400 font-medium whitespace-nowrap">
+            <div className="text-xs md:text-sm text-gray-400 font-medium whitespace-nowrap">
               Showing {filteredProducts.length} items
             </div>
           </div>

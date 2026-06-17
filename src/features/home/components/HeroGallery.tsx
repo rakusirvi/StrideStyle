@@ -27,7 +27,7 @@ export default function HeroGallery() {
         return (
           <div
             key={index}
-            className={`absolute inset-0 w-full h-full transition-all duration-[1500ms] ease-in-out ${
+            className={`absolute inset-0 w-full h-full transition-all duration-1500 ease-in-out ${
               isActive
                 ? "opacity-100 z-10 scale-100 visible"
                 : "opacity-0 z-0 scale-105 invisible"

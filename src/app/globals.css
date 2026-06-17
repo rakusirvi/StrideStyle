@@ -139,7 +139,6 @@ button {
   color-scheme: light !important;
 }
 
-/* 3. Custom Utilities for animations and editorial typography stroke */
 @utility text-stroke-brand {
   -webkit-text-stroke: 1.5px rgba(255, 219, 202, 0.25);
 }
