@@ -41,8 +41,7 @@ const ProductCard = ({ product }: ProductType) => {
 
   return (
     <div className="group cursor-pointer flex flex-col h-full space-y-2">
-      {/* Image Container */}
-      <div className="relative overflow-hidden bg-gray-100 aspect-[3/4] rounded-md">
+      <div className="relative overflow-hidden bg-gray-100 aspect-3/4 rounded-md">
         <Image
           className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-102"
           src={product.img}
@@ -52,7 +51,6 @@ const ProductCard = ({ product }: ProductType) => {
           priority={false}
         />
 
-        {/* Favorite Button */}
         <button
           onClick={handleLikeToggle}
           className="absolute top-3 right-3 p-2 bg-white/80 hover:bg-white backdrop-blur-sm rounded-full shadow-sm transition-all z-10 group/btn"
@@ -77,7 +75,6 @@ const ProductCard = ({ product }: ProductType) => {
           <p className="font-medium text-gray-500 text-sm">{product.price}</p>
         </div>
 
-        {/* Rendered Memoized Colors */}
         {displayColors && (
           <div className="flex gap-1 items-center pt-0.5">
             {displayColors.visibleColors.map((color, index) => (
