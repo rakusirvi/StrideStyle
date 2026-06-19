@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useMemo } from "react";
 import Image from "next/image";
 import { Heart } from "lucide-react";
 
@@ -10,6 +10,7 @@ interface ProductType {
     title: string;
     price: string;
     img: string;
+    colors?: string[];
   };
 }
 
@@ -18,26 +19,32 @@ const ProductCard = ({ product }: ProductType) => {
 
   const handleLikeToggle = (e: React.MouseEvent) => {
     e.stopPropagation();
-
     const newLikedState = !isLiked;
     setIsLiked(newLikedState);
 
-    // This will now perfectly log your MongoDB string ID
     console.log(`MongoDB Product ID clicked: ${product.id}`);
-
-    if (newLikedState) {
-      // Future Favorites Logic
-      // addToFavorites(product.id);
-    } else {
-      // removeFromFavorites(product.id);
-    }
   };
 
+  // Memoizing the color computations so they don't run on every toggle/re-render
+  const displayColors = useMemo(() => {
+    if (!product.colors || product.colors.length === 0) return null;
+
+    const visibleColors = product.colors.slice(0, 4);
+    const remainingCount =
+      product.colors.length > 4 ? product.colors.length - 4 : 0;
+
+    return {
+      visibleColors,
+      remainingCount,
+    };
+  }, [product.colors]); // Only recalculates if the product's colors array changes
+
   return (
-    <div className="group cursor-pointer relative">
-      <div className="relative overflow-hidden bg-gray-100 aspect-3/4 rounded-md mb-3">
+    <div className="group cursor-pointer flex flex-col h-full space-y-2">
+      {/* Image Container */}
+      <div className="relative overflow-hidden bg-gray-100 aspect-[3/4] rounded-md">
         <Image
-          className="w-full h-full  object-cover transition-transform duration-500 group-hover:scale-102"
+          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-102"
           src={product.img}
           alt={product.title}
           fill
@@ -45,27 +52,49 @@ const ProductCard = ({ product }: ProductType) => {
           priority={false}
         />
 
+        {/* Favorite Button */}
         <button
           onClick={handleLikeToggle}
-          className="absolute top-3 right-3 p-2  hover:bg-white/30 rounded-full shadow-md transition-all z-10 group/btn"
+          className="absolute top-3 right-3 p-2 bg-white/80 hover:bg-white backdrop-blur-sm rounded-full shadow-sm transition-all z-10 group/btn"
           aria-label={isLiked ? "Unlike product" : "Like product"}
         >
           <Heart
-            className={`w-5 h-5 transition-colors duration-300 ${
+            className={`w-4 h-4 transition-colors duration-300 ${
               isLiked
-                ? "text-red-500 fill-red-600"
-                : "text-gray-700 group-hover/btn:text-red-600 group-hover/btn:fill-red-500"
+                ? "text-red-500 fill-red-500"
+                : "text-gray-700 group-hover/btn:text-red-500 group-hover/btn:fill-red-500"
             }`}
-            strokeWidth={1.5}
+            strokeWidth={2}
           />
         </button>
       </div>
 
-      <div className="flex flex-col  items-start  ml-2">
-        <h3 className="font-medium text-gray-900 text-sm group-hover:underline">
-          {product.title}
-        </h3>
-        <p className="font-semibold text-gray-900 text-s"> {product.price}</p>
+      <div className="flex flex-col flex-1 justify-between space-y-1.5 px-0.5">
+        <div className="flex flex-col space-y-0.5">
+          <h3 className="font-normal text-gray-800 text-sm tracking-tight line-clamp-1 group-hover:underline">
+            {product.title}
+          </h3>
+          <p className="font-medium text-gray-500 text-sm">{product.price}</p>
+        </div>
+
+        {/* Rendered Memoized Colors */}
+        {displayColors && (
+          <div className="flex gap-1 items-center pt-0.5">
+            {displayColors.visibleColors.map((color, index) => (
+              <span
+                key={index}
+                className="w-3 h-3 md:w-4 md:h-4 rounded-sm border border-gray-200/80 shadow-sm"
+                style={{ backgroundColor: color }}
+                title={color}
+              />
+            ))}
+            {displayColors.remainingCount > 0 && (
+              <span className="text-[10px] font-medium text-gray-400 ml-0.5">
+                +{displayColors.remainingCount}
+              </span>
+            )}
+          </div>
+        )}
       </div>
     </div>
   );

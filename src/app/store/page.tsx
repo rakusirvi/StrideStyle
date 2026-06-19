@@ -1,7 +1,7 @@
 "use client";
 import React, { Suspense } from "react";
 import { useSearchParams } from "next/navigation";
-import MainProductCard from "@/SharedComponent/ProductCard/ProductCard";
+import ProductCard from "@/SharedComponent/ProductCard/ProductCard";
 import FilterSection from "@/features/Store/FilterSection";
 
 // Raw mock products dataset
@@ -16,6 +16,7 @@ const products = [
     sizes: ["XS", "S", "M"],
     collar: "ROUNDED",
     sleeve: "half",
+    colors: ["#FFFFFF", "#171717", "#4B5563", "#D1D5DB"],
   },
   {
     id: "65c2a1b3e4b0f1a2c3d4e5f2",
@@ -27,6 +28,7 @@ const products = [
     sizes: ["M", "L", "XL", "XXL"],
     collar: "Zip",
     sleeve: "FULL",
+    colors: ["#171717", "#374151", "#065F46"],
   },
   {
     id: "65c2a1b3e4b0f1a2c3d4e5f3",
@@ -38,6 +40,7 @@ const products = [
     sizes: ["S", "M", "L"],
     collar: "POLO",
     sleeve: "half",
+    colors: ["#FCA5A5", "#FEF08A", "#BFDBFE", "#FFFFFF", "#171717"],
   },
   {
     id: "65c2a1b3e4b0e5f4",
@@ -49,6 +52,7 @@ const products = [
     sizes: ["S", "M"],
     collar: "ROUNDED",
     sleeve: "FULL",
+    colors: ["#6B7280", "#E5E7EB", "#93C5FD", "#F472B6"],
   },
   {
     id: "c2a1b3e4b0f1a2c3d4e5f1",
@@ -60,6 +64,7 @@ const products = [
     sizes: ["XS", "S", "M"],
     collar: "ROUNDED",
     sleeve: "half",
+    colors: ["#FFFFFF", "#171717", "#4B5563"],
   },
   {
     id: "65c2a1b3e4d4e5f2",
@@ -71,6 +76,7 @@ const products = [
     sizes: ["M", "L", "XL", "XXL"],
     collar: "Zip",
     sleeve: "FULL",
+    colors: ["#171717", "#374151"],
   },
   {
     id: "65c2a1b3e4b0f1a2c3d4e3",
@@ -82,6 +88,7 @@ const products = [
     sizes: ["S", "M", "L"],
     collar: "POLO",
     sleeve: "half",
+    colors: ["#FCA5A5", "#BFDBFE", "#FFFFFF"],
   },
   {
     id: "65c2a1b3e4b0f1ad4e5f4",
@@ -93,6 +100,7 @@ const products = [
     sizes: ["S", "M"],
     collar: "ROUNDED",
     sleeve: "FULL",
+    colors: ["#171717", "#D4D4D8", "#F5F5F4"],
   },
   {
     id: "65cb3e4b0f1a2c3d4e5f1",
@@ -104,6 +112,7 @@ const products = [
     sizes: ["XS", "S", "M"],
     collar: "ROUNDED",
     sleeve: "half",
+    colors: ["#FFFFFF", "#171717", "#4B5563", "#000000", "#FF0000"],
   },
   {
     id: "65c2a1b3e4b1a2c3d4e5f2",
@@ -115,6 +124,7 @@ const products = [
     sizes: ["M", "L", "XL", "XXL"],
     collar: "Zip",
     sleeve: "FULL",
+    colors: ["#171717", "#374151", "#FFFFFF"],
   },
   {
     id: "65c2a1be4b0f1a2c3d4e5f3",
@@ -126,6 +136,7 @@ const products = [
     sizes: ["S", "M", "L"],
     collar: "POLO",
     sleeve: "half",
+    colors: ["#FFFFFF", "#000000", "#1D4ED8"],
   },
   {
     id: "65c2a13e4b0f1a2c3d4e5f4",
@@ -137,6 +148,7 @@ const products = [
     sizes: ["S", "M"],
     collar: "ROUNDED",
     sleeve: "FULL",
+    colors: ["#F3F4F6", "#D1D5DB", "#111827"],
   },
 ];
 
@@ -193,7 +205,7 @@ function StoreContent() {
 
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 gap-x-4 gap-y-10 pb-16">
             {filteredProducts.map((product) => (
-              <MainProductCard
+              <ProductCard
                 key={product.id}
                 product={{
                   ...product,
