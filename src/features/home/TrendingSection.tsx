@@ -47,42 +47,132 @@ const PRODUCTS_DATA = [
 
 const TrendingSection = () => {
   return (
-    <div className="w-full px-4 sm:px-6 md:px-10 lg:px-16 xl:px-24 bg-primary-fixed-dim py-16 md:py-28">
-      <section className="max-w-7xl mx-auto">
-        <div className="flex justify-between mb-12 md:mb-20 flex-wrap  ">
-          <div className="text-left   max-w-xl">
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-black uppercase tracking-tighter text-on-tertiary-fixed-variant mb-4">
-              Trending Now
-            </h2>
-            <p className="text-sm sm:text-base md:text-lg font-light text-inverse-surface leading-relaxed">
-              Selected by our community, curated for your wardrobe.
-              <br className="hidden sm:block" />
-              Discover the season’s most-wanted silhouettes.
-            </p>
+    <section className="w-full bg-gradient-to-b from-primary-fixed-dim to-primary-fixed-dim/80 py-16 md:py-24 lg:py-32">
+      <div className="px-4 sm:px-6 md:px-10 lg:px-16 xl:px-24">
+        <div className="max-w-7xl mx-auto">
+          {/* Header */}
+          <div className="flex flex-col gap-8 md:flex-row md:items-end md:justify-between mb-12 md:mb-16 lg:mb-20">
+            <div className="max-w-2xl">
+              <span className="uppercase tracking-[0.35em] text-[11px] sm:text-xs text-on-tertiary-fixed-variant/60">
+                Community Picks
+              </span>
+
+              <h2 className="mt-3 text-4xl sm:text-5xl md:text-6xl font-black tracking-tight uppercase text-on-tertiary-fixed-variant leading-none">
+                Trending Now
+              </h2>
+
+              <p className="mt-5 text-sm sm:text-base md:text-lg font-light text-inverse-surface leading-relaxed">
+                Selected by our community and curated for your wardrobe.
+                Discover the season’s most-loved essentials and everyday
+                silhouettes.
+              </p>
+            </div>
+
+            <button
+              className="
+                group
+                self-start
+                md:self-auto
+                flex
+                items-center
+                gap-2
+                rounded-full
+                bg-on-tertiary-fixed
+                px-6
+                py-3.5
+                text-sm
+                font-medium
+                text-white
+                transition-all
+                duration-300
+                hover:shadow-lg
+                hover:gap-4
+                cursor-pointer
+              "
+            >
+              <span>Shop All</span>
+
+              <ChevronRight
+                className="
+                  w-4
+                  h-4
+                  transition-transform
+                  duration-300
+                  group-hover:translate-x-1
+                "
+              />
+            </button>
           </div>
-          <div>
-            <button className=" mt-10 md:mt-5 py-4 cursor-pointer px-7 text-xs   bg-on-tertiary-fixed/90 rounded-xl text-white  flex items-center gap-2 hover:scale-95 transition-all duration-300 backdrop-blur-2xl ">
-              <span>Move to Shop</span>
-              <ChevronRight className="w-4 h-4" />
+
+          {/* Mobile Scroll / Desktop Grid */}
+          <div
+            className="
+              flex
+              gap-5
+              overflow-x-auto
+              pb-4
+              snap-x
+              snap-mandatory
+
+              md:grid
+              md:grid-cols-2
+              lg:grid-cols-4
+              md:gap-6
+              md:overflow-visible
+
+              [&::-webkit-scrollbar]:hidden
+              [-ms-overflow-style:none]
+              [scrollbar-width:none]
+            "
+          >
+            {PRODUCTS_DATA.map((product) => (
+              <div
+                key={product.id}
+                className="
+                  min-w-[280px]
+                  snap-start
+
+                  md:min-w-0
+                "
+              >
+                <MinimalProductCard
+                  title={product.title}
+                  category={product.category}
+                  price={product.price}
+                  imageProduct={product.imageProduct}
+                  colorTags={product.colorTags}
+                  isNew={product.isNew}
+                />
+              </div>
+            ))}
+          </div>
+
+          {/* Bottom CTA */}
+          <div className="flex justify-center mt-12 md:mt-16">
+            <button
+              className="
+                border
+                border-on-tertiary-fixed/20
+                px-8
+                py-4
+                rounded-full
+                text-sm
+                uppercase
+                tracking-wider
+                text-on-tertiary-fixed-variant
+                hover:bg-on-tertiary-fixed
+                hover:text-white
+                transition-all
+                duration-300
+                cursor-pointer
+              "
+            >
+              View Entire Collection
             </button>
           </div>
         </div>
-
-        <div className="w-full flex flex-wrap justify-center gap-6">
-          {PRODUCTS_DATA.map((product) => (
-            <MinimalProductCard
-              key={product.id}
-              title={product.title}
-              category={product.category}
-              price={product.price}
-              imageProduct={product.imageProduct}
-              colorTags={product.colorTags}
-              isNew={product.isNew}
-            />
-          ))}
-        </div>
-      </section>
-    </div>
+      </div>
+    </section>
   );
 };
 

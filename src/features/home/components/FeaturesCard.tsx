@@ -85,33 +85,42 @@ export default function FeaturesCard({ activeTab }: FeaturesCardTypes) {
     PRODUCTS_DATA[0];
 
   return (
-    <div className="w-full bg-neutral-50 py-6 md:py-10 overflow-hidden">
-      <div className="max-w-[1280px] mx-auto px-6 md:px-5">
+    <section className="w-full min-h-[90vh] bg-gradient-to-b from-neutral-50 to-neutral-100 py-12 md:py-24 border-b border-neutral-200 overflow-hidden">
+      <div className="max-w-[1400px] mx-auto px-4 md:px-10">
         <div
           key={activeTab}
-          className="grid grid-cols-12 gap-8 lg:gap-16 items-center animate-slide-in"
+          className="grid grid-cols-12 gap-8 lg:gap-20 items-start animate-fade-in"
         >
-          <div className="col-span-12 lg:col-span-7 flex flex-col justify-center order-1 lg:order-0">
-            <h2 className="text-3xl md:text-5xl font-bold tracking-tight text-black mb-4">
-              Designed for Living
+          {/* Left Editorial */}
+          <div className="col-span-12 lg:col-span-7 flex flex-col order-1 lg:order-none">
+            <span className="text-xs md:text-sm font-semibold tracking-[0.25em] text-neutral-500 uppercase mb-3 block">
+              {currentItem.category} Collection
+            </span>
+            <h2 className="text-3xl md:text-6xl lg:text-7xl font-serif tracking-tight text-neutral-900 mb-6">
+              Designed for <span className="italic font-normal">Living</span>
             </h2>
-            <p className="text-gray-600 text-base md:text-lg max-w-xl mb-10 leading-relaxed">
+            <p className="text-neutral-600 text-base md:text-lg lg:text-xl max-w-xl mb-8 md:mb-12 leading-relaxed font-light">
               {currentItem.description}
             </p>
 
-            <div className="w-full bg-gray-200 rounded-2xl overflow-hidden group shadow-sm">
+            <div className="w-full relative aspect-square md:aspect-16/10 overflow-hidden bg-neutral-200 group cursor-crosshair rounded-xl shadow-lg">
+              <div className="absolute inset-0 bg-black/10 group-hover:bg-transparent z-10 transition-colors duration-500" />
               <Image
-                className="w-full h-auto aspect-square object-cover transition-transform duration-700 group-hover:scale-105"
-                alt="Lookbook focus"
+                className="w-full h-full object-cover transform scale-100 group-hover:scale-[1.05] transition-transform duration-[1.5s] ease-out"
+                alt={`${currentItem.title} Campaign View`}
                 src={currentItem.imageMain}
-                width={600}
-                height={600}
-                loading="eager"
+                fill
+                priority
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 70vw, 60vw"
               />
+              <div className="absolute bottom-4 md:bottom-6 left-4 md:left-6 z-20 mix-blend-difference text-white text-xs md:text-sm tracking-widest uppercase opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                Editorial / No. {currentItem.id.split("-")[1]}
+              </div>
             </div>
           </div>
 
-          <div className="col-span-12 lg:col-span-5 flex flex-col items-center justify-center">
+          {/* Right Product Card */}
+          <div className="col-span-12 lg:col-span-5 lg:sticky lg:top-24 flex flex-col justify-center items-center lg:items-start pt-6 lg:pt-28">
             <MinimalProductCard
               title={currentItem.title}
               price={currentItem.price}
@@ -123,6 +132,6 @@ export default function FeaturesCard({ activeTab }: FeaturesCardTypes) {
           </div>
         </div>
       </div>
-    </div>
+    </section>
   );
 }

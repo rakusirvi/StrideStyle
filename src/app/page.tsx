@@ -10,7 +10,6 @@ const Home = () => {
       <Hero />
       <Features />
       <TrendingSection />
-
       <ContactUs />
     </div>
   );

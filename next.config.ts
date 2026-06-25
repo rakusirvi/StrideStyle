@@ -4,10 +4,10 @@ const nextConfig: NextConfig = {
   reactCompiler: false,
 
   logging: {
-    browserToTerminal: true, // You can turn this back on safely now
+    browserToTerminal: false,
   },
 
-  allowedDevOrigins: ["10.253.104.149", "10.10.200.4"],
+  allowedDevOrigins: ["10.253.104.149", "10.193.166.149"],
   images: {
     remotePatterns: [
       {
