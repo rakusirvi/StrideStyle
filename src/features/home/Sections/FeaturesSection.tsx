@@ -1,8 +1,8 @@
 "use client";
 
 import React, { useState } from "react";
-import HeroCategoryNav from "./components/HeroCategoryNav";
-import FeaturesCard from "./components/FeaturesCard";
+import HeroCategoryNav from "../components/HeroCategoryNav";
+import FeaturesCard from "../components/FeaturesCard";
 
 const Features = () => {
   const [activeTab, setActiveTab] = useState("MEN TEE");

@@ -1,6 +1,6 @@
 "use client";
 
-import HeroGallery from "./components/HeroGallery";
+import HeroGallery from "../components/HeroGallery";
 import Link from "next/link";
 export default function Hero() {
   return (

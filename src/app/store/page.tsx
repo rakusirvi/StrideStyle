@@ -178,6 +178,7 @@ function StoreContent() {
     if (product.price > parseFloat(activeMaxPrice)) return false;
     return true;
   });
+  
 
   return (
     <div className="max-w-[1600px] min-h-screen md:h-[calc(100vh-56px)] mx-auto p-2 overflow-hidden">

@@ -1,8 +1,8 @@
-import Features from "@/features/home/FeaturesSection";
+import Features from "@/features/home/Sections/FeaturesSection";
 
-import Hero from "@/features/home/HeroSection";
-import TrendingSection from "@/features/home/TrendingSection";
-import ContactUs from "@/features/home/ContactUs";
+import Hero from "@/features/home/Sections/HeroSection";
+import TrendingSection from "@/features/home/Sections/TrendingSection";
+import ContactUs from "@/features/home/Sections/ContactUs";
 
 const Home = () => {
   return (
