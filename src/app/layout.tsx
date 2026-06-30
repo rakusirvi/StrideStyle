@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import Navbar from "@/SharedComponent/Navbar";
-import Footer from "@/SharedComponent/Footer";
+
+import Footer from "@/Components/Footer/Footer";
+import Navbar from "@/Components/Navbar/Navbar";
 
 export const metadata: Metadata = {
   title: "STRIDE STYLE | Premium Luxury Streetwear",
@@ -22,4 +23,4 @@ export default function RootLayout({
       </body>
     </html>
   );
-} 
+}

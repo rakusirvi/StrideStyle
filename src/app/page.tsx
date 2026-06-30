@@ -1,16 +1,17 @@
-import Features from "@/features/home/Sections/FeaturesSection";
-
-import Hero from "@/features/home/Sections/HeroSection";
-import TrendingSection from "@/features/home/Sections/TrendingSection";
-import ContactUs from "@/features/home/Sections/ContactUs";
+import ArrivalsSection from "@/Features/LandingPage/Sections/ArrivalsSection";
+import CardSection from "@/Features/LandingPage/Sections/CardSection";
+import DealsSection from "@/Features/LandingPage/Sections/DealsSection";
+import FollowOnInstagramSection from "@/Features/LandingPage/Sections/FollowOnInstagramSection";
+import HeroSection from "@/Features/LandingPage/Sections/HeroSection";
 
 const Home = () => {
   return (
     <div className="h-full w-full ">
-      <Hero />
-      <Features />
-      <TrendingSection />
-      <ContactUs />
+      <HeroSection />
+      <DealsSection />
+      <CardSection />
+      <ArrivalsSection />
+      <FollowOnInstagramSection />
     </div>
   );
 };
