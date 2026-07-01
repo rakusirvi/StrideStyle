@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@import url("https://fonts.googleapis.com/css2?family=Salsa&display=swap");
 
 :root {
   --raw-primary: #072d44;
@@ -14,4 +15,34 @@
   --color-tertiary: var(--raw-tertiary);
   --color-fourth: var(--raw-fourth);
   --color-fifth: var(--raw-fifth);
+  --font-salsa: "Salsa", cursive;
+}
+
+html {
+  font-family: "Poppins", sans-serif;
+}
+
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-scroll {
+  animation: scroll 30s linear infinite;
+  width: max-content;
+}
+
+.animate-scroll:hover {
+  animation-play-state: paused;
+}
+
+/* For mobile responsiveness */
+@media (max-width: 768px) {
+  .animate-scroll {
+    animation-duration: 20s;
+  }
 }
